@@ -1,0 +1,17 @@
+{
+  "name": "@repo/ws-backend",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "bun --watch ./src/index.ts"
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.18.1",
+    "@repo/typescript-config": "workspace:*"
+  }
+}
