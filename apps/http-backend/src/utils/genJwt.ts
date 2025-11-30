@@ -1,10 +1,16 @@
 
 import jwt from "jsonwebtoken"
-import { Response } from "express"
+import dotenv from "dotenv";
+
+dotenv.config({
+    path:"../../.env"
+})
 
 
-export  function genToken( userId :string , res:Response) {
+export function genToken( userId :string ) {
     
-    const token =  jwt.sign(userId,"secret")
-    res.cookie("jwt",token)
+    const token = jwt.sign(userId,process.env.SECRET!)
+    return token
 }
+
+
