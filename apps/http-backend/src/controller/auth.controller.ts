@@ -1,16 +1,10 @@
 import { Request, Response } from 'express';
 import { genToken } from '../utils/genJwt.js';
 import {signinCheck, signupCheck} from "@repo/common"
-import dotenv from "dotenv"
 import bcrypt from 'bcryptjs';
+import { prismaClient } from '../lib/db.ts';
 
-import { getDb } from '@repo/database';
 
-dotenv.config({
-    path:"../../.env"
-})
-
-const prismaClient = getDb({connectionString:process.env.DATABASE_URL!})
 
 
 export async function singup(req:Request, res:Response) {

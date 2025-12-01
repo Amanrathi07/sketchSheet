@@ -10,3 +10,7 @@ export const signinCheck = z.object({
     email : z.email().min(3).max(30) ,
     password : z.string().min(3).max(30)
 })
+
+export const roomCheck = z.object({
+    name : z.string().min(3).max(30) ,
+})
