@@ -53,6 +53,7 @@
       "name": "@repo/ws-backend",
       "version": "1.0.0",
       "dependencies": {
+        "dotenv": "^17.2.3",
         "jsonwebtoken": "^9.0.2",
         "ws": "^8.18.3",
       },
