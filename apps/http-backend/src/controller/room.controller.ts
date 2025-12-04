@@ -31,3 +31,19 @@ export async function createRoom(req: Request, res: Response) {
     return res.status(500).json({ message: "internal server error" });
   }
 }
+
+
+export async function getRoomId(req: Request, res: Response){
+  try {
+    const title = req.params.title ;
+    const room = await prismaClient.room.findUnique({
+      where:{
+        name:title
+      }
+    })
+    res.status(202).json({roomId:room.id})
+  } catch (error) {
+    console.log("error in createRoom function", error);
+    return res.status(500).json({ message: "internal server error" });
+  }
+}
