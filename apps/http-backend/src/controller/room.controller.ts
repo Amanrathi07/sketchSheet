@@ -47,3 +47,20 @@ export async function getRoomId(req: Request, res: Response){
     return res.status(500).json({ message: "internal server error" });
   }
 }
+
+
+export async function getAllMessage(req: Request, res: Response) {
+  const roomId = req.body.roomId
+  try {
+    const dbResponce = await prismaClient.message.findMany({
+      where:{
+        roomId
+      }
+    })
+
+    return res.status(200).json({allMessages:dbResponce})
+  } catch (error) {
+    console.log("error in getAllMessage function", error);
+    return res.status(500).json({ message: "internal server error" });
+  }
+}

@@ -1,4 +1,5 @@
 import axios from "axios"
+import { ChatRoom } from "../../../components/ChatRoom";
 
 
 interface parms {
@@ -19,7 +20,7 @@ export default async function room({params}:parms){
     console.log("room id is :", roomId)
     return(
         <div>
-           {roomId} 
+            <ChatRoom  id={roomId}/>
         </div>
     )
 }

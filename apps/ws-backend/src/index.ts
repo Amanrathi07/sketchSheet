@@ -16,11 +16,15 @@ interface user {
   ws: WebSocket;
 }
 
+
+
 interface dataprops {
   type: "join_room" | "leave_room" | "chat";
   roomsId?: number;
   message?: string;
 }
+
+
 
 const users: user[] = [];
 
@@ -34,14 +38,17 @@ function checkUser(token: string) {
 }
 
 wss.on("connection", (ws, req) => {
-  const token = req.headers.cookie || " ";
-  const decoded = checkUser(token);
-  if (!decoded) {
-    ws.close();
-    return null;
-  }
+  // const token = req.headers.cookie || "";
+  // const decoded = checkUser(token);
+  // if (!decoded) {
+  //   ws.close();
+  //   return null;
+  // }
+
+  let decoded ;
+
   const currentUser = {
-    userId: decoded,
+    userId: decoded || "ab48f355-9852-4cd2-9915-b7835a981198",
     rooms: [],
     ws,
   };
@@ -52,10 +59,11 @@ wss.on("connection", (ws, req) => {
 
   ws.on("message", async (rawData) => {
     const data: dataprops = JSON.parse(rawData.toString());
+    console.log(data)
     //join-room
     if (data.type === "join_room" && data.roomsId) {
       try {
-        const dbResponce = await prismaClient.room.findUnique({
+        const dbResponce = await prismaClient.room.findFirst({
           where: { id: data.roomsId },
         });
 
@@ -97,6 +105,7 @@ wss.on("connection", (ws, req) => {
 
     //message
     if (data.type === "chat" && data.roomsId && data.message) {
+      console.log("reseave a chat :",data.message)
       users.forEach((auser) => {
         if (auser.rooms.includes(data.roomsId as unknown as number)) {
           auser.ws.send(
