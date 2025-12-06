@@ -38,17 +38,22 @@ function checkUser(token: string) {
 }
 
 wss.on("connection", (ws, req) => {
-  // const token = req.headers.cookie || "";
-  // const decoded = checkUser(token);
-  // if (!decoded) {
-  //   ws.close();
-  //   return null;
-  // }
+  const fullUrl = req.url;
+  const quaryString = fullUrl?.split("?")[1] ; 
+  const  jwtToken = new URLSearchParams(quaryString)
 
-  let decoded ;
+  const token = jwtToken.get("token") || "" ;
+
+  const decoded = checkUser(token);
+  if (!decoded) {
+    ws.close();
+    return null;
+  }
+
+
 
   const currentUser = {
-    userId: decoded || "ab48f355-9852-4cd2-9915-b7835a981198",
+    userId: decoded ,
     rooms: [],
     ws,
   };
@@ -76,8 +81,9 @@ wss.on("connection", (ws, req) => {
           );
           return;
         }
-
+        //@ts-ignore
         if (!currentUser.rooms.includes(data.roomsId)) {
+        //@ts-ignore
           currentUser.rooms.push(data.roomsId);
           ws.send(
             JSON.stringify({
