@@ -64,7 +64,6 @@ wss.on("connection", (ws, req) => {
 
   ws.on("message", async (rawData) => {
     const data: dataprops = JSON.parse(rawData.toString());
-    console.log(data)
     //join-room
     if (data.type === "join_room" && data.roomsId) {
       try {
@@ -111,7 +110,6 @@ wss.on("connection", (ws, req) => {
 
     //message
     if (data.type === "chat" && data.roomsId && data.message) {
-      console.log("reseave a chat :",data.message)
       users.forEach((auser) => {
         if (auser.rooms.includes(data.roomsId as unknown as number)) {
           auser.ws.send(

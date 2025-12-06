@@ -1,17 +1,17 @@
 "use client"
 import axios from "axios"
 import { useState } from "react"
+import axiosInstance from "../../../utils/axiosInstance";
 
 export default function Signin(){
     async function formHandel(){
       try {
-    const response = await axios.post(
-      "http://localhost:3000/v1/auth/signin",
-      data,
-      { withCredentials: true }
+    const response = await axiosInstance.post(
+      "/auth/signin",
+      data
     );
 
-    console.log(response.data.message);
+    alert(response.data.message);
   } catch (err) {
     console.error("Signin error:", err);
   }

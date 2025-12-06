@@ -12,4 +12,4 @@ router.get("/allmessage",getAllMessage)
 
 router.get("/room/:title",getRoomId)
 
-export default router ;
+export default router ; 

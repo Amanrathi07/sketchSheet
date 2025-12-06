@@ -3,13 +3,12 @@
 import { useEffect, useState } from "react"
 import { useSocket } from "../hooks/useSocket"
 
-export function ChatRoomClient({message,id}){
+export function ChatRoomClient({message,id}:{message:any,id:any}){
 
     const [allMessage,setAllMessage]=useState(message);
     const {loading,socket} =useSocket();
     const [text,setText]=useState("");
 
-    console.log(allMessage)
 
     useEffect(()=>{
         if(!socket || loading) return ;
@@ -22,14 +21,13 @@ export function ChatRoomClient({message,id}){
         }))
 
         // listining the message 
-      const handleMessage = (event) => {
+      const handleMessage = (event:any) => {
       const parsed = JSON.parse(event.data);
 
       if (parsed.type === "chat") {
-        setAllMessage((prev) => [...prev, { message: parsed.message }]);
+        setAllMessage((prev:any) => [...prev, { message: parsed.message }]);
       }
     };
-    console.log("checking",allMessage)
     socket.addEventListener("message", handleMessage);
 
     // cleanup
@@ -40,7 +38,7 @@ export function ChatRoomClient({message,id}){
         <div>
             <div>
             ChatRoomClient
-            {allMessage.map((msg,i)=> <div key={i}>{msg.message}</div>)}
+            {allMessage.map((msg:any,i:number)=> <div key={i}>{msg.message}</div>)}
         </div>
         <div>
             <input type="text" placeholder="message" onChange={(e)=>{

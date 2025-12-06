@@ -1,9 +1,10 @@
 
 import axios from "axios"
 import { ChatRoomClient } from "./ChatRoomClient"
+import axiosInstance from "../utils/axiosInstance"
 
-async function getChats(id){
-    const responce =await axios.get(`${process.env.BACKEND_URL}/v1/room/allmessage`,{headers:{},data:{
+async function getChats(id:any){
+    const responce =await axiosInstance.get(`/room/allmessage`,{headers:{},data:{
         roomId:id
     }})
 
@@ -11,7 +12,7 @@ async function getChats(id){
 }
 
 
-export async function ChatRoom({id}){
+export async function ChatRoom({id}:{id:any}){
     const allMessages = await getChats(id)
     return(
         <div>

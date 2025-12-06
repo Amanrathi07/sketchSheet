@@ -5,11 +5,10 @@ export function useSocket() {
   const [socket, setSocket] = useState<WebSocket>();
 
   useEffect(() => {
-    const raw = document.cookie.split("; ").find((c) => c.startsWith("token="));
-
+    const raw = document.cookie.split("; ").find((c) => c.startsWith("jwt="));
     const jwt = raw?.split("=")[1];
 
-    const ws = new WebSocket(`ws://localhost:8080?token=eyJhbGciOiJIUzI1NiJ9.OTNiMjI5MDQtNThkMi00MTVmLThhNTEtNmM4MGQ5MDQ4MWEw.RYaZaFPBjHPgbvVi6ks73L_9ftdgVfiVQIsc7xF2CjM`);
+    const ws = new WebSocket(`ws://localhost:8080?token=${jwt}`);
 
     ws.onopen = () => {
       setLoading(false);
