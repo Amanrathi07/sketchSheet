@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 export default function Home(){
   return(
@@ -30,7 +31,8 @@ export default function Home(){
         <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 justify-center">
           
           {/* 1. Create Room Button (Primary - Bright Accent) */}
-          <button
+          <Link href={"/createRoom"} >
+            <button
             className="
               flex-1
               px-8 py-3 
@@ -49,8 +51,10 @@ export default function Home(){
           >
             ➕ Create New Room
           </button>
+          </Link>
 
           {/* 2. Join Room Button (Secondary - Inverse Look) */}
+          <Link href={"/createRoom"} >
           <button
             
             className="
@@ -71,6 +75,7 @@ export default function Home(){
           >
             🤝 Join Room
           </button>
+          </Link>
         </div>
 
       </div>

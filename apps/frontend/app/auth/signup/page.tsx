@@ -4,6 +4,8 @@ import axiosInstance from "@/lib/axiosInstance";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useAuth } from "@/context/authContext";
+
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -12,7 +14,7 @@ export default function Signup() {
     name: "",
   });
   const [loading, setLoading] = useState(false);
-
+  const {user,setUser}=useAuth()
   const router = useRouter();
 
   async function formHandel(e) {
@@ -21,6 +23,8 @@ export default function Signup() {
       setLoading(true);
       const responce = await axiosInstance.post("/v1/auth/signup", formData);
       toast.success(responce.data.message);
+      
+      setUser(responce.data.user)
       setLoading(false);
       router.push("/");
     } catch (error) {

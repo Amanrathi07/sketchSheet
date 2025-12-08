@@ -29,11 +29,12 @@ export async function singup(req:Request, res:Response) {
                 password:hashPassword
             }
         })
+        const { password, ...safeUser } = newUser;
         const token = genToken(newUser.id);
         return res
       .status(200)
       .cookie("jwt", token)
-      .json({ message: "Signup successful" });
+      .json({ message: "Signup successful",user:safeUser });
     } catch (error) {
         console.log("error in signup function ", error);
         return res.status(500).json({message:"internal server error"})
@@ -62,10 +63,12 @@ export async function signin(req: Request, res: Response) {
     if(passwordCheck){
         const token = genToken(dbResponse.id);
 
+        const { password, ...safeUser } = dbResponse;
+
     return res
       .status(200)
       .cookie("jwt", token)
-      .json({ message: "Signin successful" });
+      .json({ message: "Signin successful",user: safeUser});
         
     }
 

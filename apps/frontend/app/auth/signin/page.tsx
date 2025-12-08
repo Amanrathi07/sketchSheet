@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuth } from "@/context/authContext";
 import axiosInstance from "@/lib/axiosInstance";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -9,13 +10,15 @@ export default function Signin() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
+  const {setUser}=useAuth()
   async function formHandel(e) {
     e.preventDefault();
     try {
       setLoading(true);
       const responce = await axiosInstance.post("/v1/auth/signin", formData);
       toast.success(responce.data.message);
+      setUser(responce.data.user)
+
       setLoading(false);
       router.push("/");
     } catch (error) {

@@ -3,10 +3,12 @@
 import { useContext, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/authContext";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const {user} = useAuth()
   return (
     <nav className="w-full bg-gray-900 text-white border-b border-gray-700 shadow-lg shadow-gray-800/40">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -22,7 +24,7 @@ sketchSheet
         </h1>
 
         {/* Desktop Buttons */}
-        <div className="hidden md:flex items-center gap-4">
+        {user ? user.name : <div className="hidden md:flex items-center gap-4">
           <button
             onClick={() => router.push("/auth/signin")}
             className="
@@ -56,15 +58,15 @@ sketchSheet
           >
             Join Up
           </button>
-        </div>
+        </div>}
 
         {/* Mobile Toggle */}
-        <button
+        {user ? '' : <button
           onClick={() => setOpen(!open)}
           className="md:hidden text-lime-400"
         >
           {open ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        </button>}
       </div>
 
       {/* Mobile Menu */}
