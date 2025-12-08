@@ -38,7 +38,10 @@ export function ChatRoomClient({message,id}:{message:any,id:any}){
         <div>
             <div>
             ChatRoomClient
-            {allMessage.map((msg:any,i:number)=> <div key={i}>{msg.message}</div>)}
+            {allMessage.map((msg:any,i:number)=> 
+            <div key={i}>
+              <p>{msg.message}</p>
+            </div>)}
         </div>
         <div>
             <input type="text" placeholder="message" onChange={(e)=>{
