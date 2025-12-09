@@ -10,7 +10,7 @@ function ButtonGroup() {
     <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 justify-center">
           
           {/* 1. Create Room Button (Primary - Bright Accent) */}
-          <Link href={user ? "/createRoom":"/auth/signin"} >
+          <Link href={"/createRoom"} >
             <button
             className="
               flex-1
@@ -33,7 +33,7 @@ function ButtonGroup() {
           </Link>
 
           {/* 2. Join Room Button (Secondary - Inverse Look) */}
-          <Link href={user?"/createRoom":"/auth/signin"} >
+          <Link href={"/joinRoom"} >
           <button
             
             className="

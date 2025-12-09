@@ -42,7 +42,7 @@ export async function getRoomId(req: Request, res: Response){
         name:title
       }
     })
-    res.status(202).json({roomId:room.id})
+    res.status(202).json({message:`redirect to room ${title}` ,roomId:room.id})
   } catch (error) {
     console.log("error in createRoom function", error);
     return res.status(500).json({ message: "internal server error" });

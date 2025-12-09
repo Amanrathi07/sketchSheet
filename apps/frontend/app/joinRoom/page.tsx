@@ -6,7 +6,7 @@ import axiosInstance from "@/lib/axiosInstance";
 
 
 
-export default function CreateRoom() {
+export default function JoinRoom() {
   const [roomName, setRoomName] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -17,7 +17,8 @@ export default function CreateRoom() {
     
     try {
       setLoading(true);
-      const res = await axiosInstance.post("/v1/room/room", { name: roomName });
+      const res = await axiosInstance.get(`/v1/room/room/${roomName}`);
+      console.log(res.data)
       toast.success(res.data.message );
       setLoading(false);
       console.log(res.data)
@@ -44,10 +45,10 @@ export default function CreateRoom() {
       >
         {/* Title */}
         <h1 className="text-4xl font-extrabold text-white text-center">
-          <span className="text-lime-400">🆕</span> Create Room
+          <span className="text-lime-400">🆕</span> Join Room
         </h1>
         <p className="text-gray-400 text-sm text-center">
-          Enter a name for your new chat room
+          Enter the name you want to join
         </p>
 
         {/* Room Name Input */}
