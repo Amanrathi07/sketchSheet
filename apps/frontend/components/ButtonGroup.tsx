@@ -1,10 +1,7 @@
-"use client"
-import { useAuth } from "@/context/authContext"
 import Link from "next/link"
 
 
 function ButtonGroup() {
-    const {user} = useAuth()
 
   return (
     <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 justify-center">

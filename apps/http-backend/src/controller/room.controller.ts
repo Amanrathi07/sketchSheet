@@ -51,7 +51,8 @@ export async function getRoomId(req: Request, res: Response){
 
 
 export async function getAllMessage(req: Request, res: Response) {
-  const roomId = req.body.roomId
+  const id = req.body.roomId;
+  const roomId = Number(id)
   try {
     const dbResponce = await prismaClient.message.findMany({
       where:{

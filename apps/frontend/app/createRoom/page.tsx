@@ -17,7 +17,7 @@ export default function CreateRoom() {
     
     try {
       setLoading(true);
-      const res = await axiosInstance.post("/v1/room/room", { name: roomName });
+      const res = await axiosInstance.post("/room/room", { name: roomName });
       toast.success(res.data.message );
       setLoading(false);
       console.log(res.data)

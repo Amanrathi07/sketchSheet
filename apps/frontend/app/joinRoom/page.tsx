@@ -17,8 +17,7 @@ export default function JoinRoom() {
     
     try {
       setLoading(true);
-      const res = await axiosInstance.get(`/v1/room/room/${roomName}`);
-      console.log(res.data)
+      const res = await axiosInstance.get(`/room/room/${roomName}`);
       toast.success(res.data.message );
       setLoading(false);
       console.log(res.data)

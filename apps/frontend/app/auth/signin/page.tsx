@@ -15,7 +15,7 @@ export default function Signin() {
     e.preventDefault();
     try {
       setLoading(true);
-      const responce = await axiosInstance.post("/v1/auth/signin", formData);
+      const responce = await axiosInstance.post("/auth/signin", formData);
       toast.success(responce.data.message);
       setUser(responce.data.user)
 
