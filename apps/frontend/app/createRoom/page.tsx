@@ -16,13 +16,14 @@ export default function CreateRoom() {
     
     try {
       setLoading(true);
-      const res = await axiosInstance.post("/v1/rooms/create", { name: roomName });
-      toast.success(res.data.message || "Room created!");
+      const res = await axiosInstance.post("/v1/room/room", { name: roomName });
+      toast.success(res.data.message );
       setLoading(false);
+      console.log(res.data)
       router.push(`/rooms/${res.data.roomId}`); // navigate to the room
     } catch (error) {
       setLoading(false);
-      toast.error(error?.response?.data?.message || "Failed to create room");
+      toast.error(error?.response?.data?.message );
     }
   }
 

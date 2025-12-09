@@ -7,7 +7,7 @@ export async function createRoom(req: Request, res: Response) {
   try {
     const {success,data} = roomCheck.safeParse(req.body);
     if(!success){
-        return res.status(202).json({message:"pls send valid room name"})
+        return res.status(402).json({message:"pls send valid room name"})
     }
     const dbResponce = await prismaClient.room.findFirst({
         where:{
@@ -26,7 +26,7 @@ export async function createRoom(req: Request, res: Response) {
             adminId : req.user
         }
     })
-    res.status(200).json({ message: "new room created ",roomID:newRoom.id} );
+    res.status(200).json({ message: "new room created ",roomId:newRoom.id} );
   } catch (error) {
     console.log("error in createRoom function", error);
     return res.status(500).json({ message: "internal server error" });
