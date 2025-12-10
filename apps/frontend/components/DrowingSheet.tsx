@@ -3,35 +3,24 @@
 import { initDraw } from "@/draw"
 import useSocket from "@/hooks/useSocket"
 import { useEffect, useRef } from "react"
+import Canvas from "./Canvas"
 
 interface props {
   roomId : number
-  allMessages:any
 }
 
-function DrowingSheet({roomId,allMessages}:props) {
-  const {socket  } =useSocket()
-  const canvasRef = useRef<HTMLCanvasElement | null>(null)
+function DrowingSheet({roomId}:props) {
+  const {socket } =useSocket()
+  
 
-  useEffect(() => {
-  const canvas = canvasRef.current;
-  if (!canvas) return; 
-
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return;
-
-  ctx.beginPath();
-  ctx.fillStyle = "white"
-  ctx.rect(20, 20, 150, 100);
-  ctx.stroke();
-}, []);
-
-
-
-
+if(!socket){
+  return(
+    <div>connecting to socket ...</div>
+  )
+}
   
   return(
-    <canvas ref={canvasRef} height={1000} width={1275} className="bg-white"></canvas>
+    <Canvas roomId={roomId}  socket={socket} />
   )
 }
 export default DrowingSheet

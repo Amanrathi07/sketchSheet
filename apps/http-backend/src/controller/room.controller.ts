@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { prismaClient } from "../lib/db.ts";
 import {roomCheck}from "@repo/common"
-import { SortOrder } from "../../../../packages/database/generated/prisma/internal/prismaNamespace.ts";
+
 
 export async function createRoom(req: Request, res: Response) {
   try {

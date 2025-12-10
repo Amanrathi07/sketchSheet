@@ -66,9 +66,10 @@ wss.on("connection", (ws, req) => {
     const data: dataprops = JSON.parse(rawData.toString());
     //join-room
     if (data.type === "join_room" && data.roomsId) {
+      const room_id = Number(data.roomsId)
       try {
         const dbResponce = await prismaClient.room.findFirst({
-          where: { id: data.roomsId },
+          where: { id:room_id  }
         });
 
         if (!dbResponce) {
@@ -110,6 +111,7 @@ wss.on("connection", (ws, req) => {
 
     //message
     if (data.type === "chat" && data.roomsId && data.message) {
+      console.log("doing somthing")
       users.forEach((auser) => {
         if (auser.rooms.includes(data.roomsId as unknown as number)) {
           auser.ws.send(
@@ -125,10 +127,11 @@ wss.on("connection", (ws, req) => {
       await prismaClient.message.create({
         data: {
           message: data.message,
-          roomId: data.roomsId,
+          roomId: Number(data.roomsId),
           senderId: currentUser.userId as string,
         },
       });
+      
     }
   });
 

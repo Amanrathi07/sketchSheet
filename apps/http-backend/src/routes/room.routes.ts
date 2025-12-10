@@ -7,7 +7,7 @@ const router:Router = Router();
 
 router.post("/room",cookiesCheck,createRoom)
 
-router.get("/allmessage",getAllMessage)
+router.post("/allmessage",getAllMessage)
 
 
 router.get("/room/:title",getRoomId)
