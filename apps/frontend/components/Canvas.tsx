@@ -22,8 +22,11 @@ function Canvas({roomId,socket}:props) {
     }
   },[canvasRef])
 
+
   return (
-    <canvas ref={canvasRef} height={1200} width={1200}></canvas>
+    <div>
+      <canvas className="bg-black" ref={canvasRef} height={window.innerHeight} width={window.innerWidth}></canvas>
+    </div>
   )
 }
 export default Canvas
