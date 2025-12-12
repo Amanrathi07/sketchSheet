@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import {  useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
-import axiosInstance from "@/lib/axiosInstance";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -119,9 +118,11 @@ sketchSheet
 }
 
 function LogoutButton(){
+  const router = useRouter();
+  const {setUser}=useAuth()
   return(
     <button
-            onClick={() => {document.cookie =`jwt=`}}
+            onClick={() => {document.cookie = `jwt=`; router.push("/") ;setUser(null)}}
             className="
               px-6 py-2 
               text-gray-900 

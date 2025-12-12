@@ -10,17 +10,20 @@ import React, {
 
 const AuthContext = createContext({
   user: null,
-  setUser: () => {},
+  setUser: (p0: null) => {},
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState(null);
   useEffect(() => {
   async function checkUser() {
-    const dbresponce = await axiosInstance.get("/auth/checkAuth");
+    try {
+      const dbresponce = await axiosInstance.get("/auth/checkAuth");
     if(dbresponce.data){
       console.log(dbresponce.data)
       setUser(dbresponce.data)
+    }
+    } catch (error) {
     }
   }
 
