@@ -10,7 +10,7 @@ export default function useSocket(){
             setLoading(true)
             const raw = document.cookie.split("; ").find((c) => c.startsWith("jwt="));
         const jwt = raw?.split("=")[1];
-
+            console.log("jwt is : ",document.cookie)
         const wss = new WebSocket(`ws://localhost:8080?token=${jwt}`);
 
             wss.onopen=()=>{

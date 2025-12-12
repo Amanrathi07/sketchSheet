@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import {  useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
-
+import Cookies from "js-cookie"
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -122,7 +122,7 @@ function LogoutButton(){
   const {setUser}=useAuth()
   return(
     <button
-            onClick={() => {document.cookie = `jwt=`; router.push("/") ;setUser(null)}}
+            onClick={() => {Cookies.remove('jwt'); router.push("/") ;setUser(null)}}
             className="
               px-6 py-2 
               text-gray-900 

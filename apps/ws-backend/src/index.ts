@@ -30,6 +30,7 @@ const users: user[] = [];
 
 function checkUser(token: string) {
   try {
+    console.log("token is :",token)
     return jwt.verify(token, process.env.SECRET!);
   } catch (error) {
     console.log("error in checkUser function ", error);
