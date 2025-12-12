@@ -112,6 +112,7 @@ wss.on("connection", (ws, req) => {
 
     //message
     if (data.type === "chat" && data.roomsId && data.message) {
+      console.log(data)
       users.forEach((auser) => {
         if (auser.rooms.includes(data.roomsId as unknown as number)) {
           auser.ws.send(

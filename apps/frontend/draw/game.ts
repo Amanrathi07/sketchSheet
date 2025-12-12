@@ -50,6 +50,7 @@ export class Game {
 
   async init() {
     this.existingShapes = await getMessage(this.roomId);
+    console.log(this.existingShapes)
     this.clearCanvas();
   }
 
@@ -82,8 +83,9 @@ export class Game {
         this.ctx.strokeRect(fig.x, fig.y, fig.width, fig.height);
       } else if (fig.type === "line") {
         this.ctx.beginPath();
-        this.ctx.moveTo(fig.x, fig.y);
-        this.ctx.lineTo(200, 100);
+        this.ctx.moveTo(fig.startx, fig.starty);
+        this.ctx.lineTo(fig.endx, fig.endy);
+        this.ctx.stroke();
       }
     });
   }
@@ -117,9 +119,7 @@ export class Game {
           endy: e.clientY,
         };
       }
-
-      this.existingShapes.push(this.newShape);
-
+      
       this.socket.send(
         JSON.stringify({
           type: "chat",
