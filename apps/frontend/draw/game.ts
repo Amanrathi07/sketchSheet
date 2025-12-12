@@ -16,6 +16,16 @@ type shape =
       radius: number;
     };
 
+
+
+interface shapeMap{
+    id?:string ;
+    message:string;
+    senderId :string
+    roomId:number
+    createdAt?:string
+}
+
 export class Game {
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
@@ -44,7 +54,7 @@ export class Game {
     this.initMouseHandlers();
   }
 
-  setTool(tool) {
+  setTool(tool:tool) {
     this.selectedTool = tool;
   }
 
@@ -71,8 +81,8 @@ export class Game {
     this.ctx.strokeStyle = "rgb(255,255,255)";
 
     this.ctx.fillRect(0, 0, this.canvas.height, this.canvas.width);
-
-    this.existingShapes.map((shape) => {
+//@ts-ignore
+    this.existingShapes.map((shape:shapeMap) => {
       let fig;
       if (shape.id) {
         fig = JSON.parse(shape.message);

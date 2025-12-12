@@ -1,6 +1,5 @@
 "use client "
 
-import { initDraw } from "@/draw";
 import { Game } from "@/draw/game";
 import { Circle, Minus, Pencil, RectangleHorizontal } from "lucide-react";
 import { useEffect, useRef, useState } from "react"
@@ -46,7 +45,7 @@ useEffect(()=>{
        <div className="absolute h-7  inset-y-20 flex  gap-7 ">
 
         {
-          allTools.map((t,i)=>(
+          allTools.map((t:any,i)=>(
           <div key={i} className={`text-red-800 flex items-center bg-amber-400 px-3 rounded-xl ${(t.name===tool)?("bg-blue-500"):""}`} onClick={()=>{selectedTool(t.name)} }> {t.icon}</div>
         ))
         }
