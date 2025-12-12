@@ -35,7 +35,8 @@ export default function RootLayout({
   reverseOrder={false}
 />
 <AuthProvider>
-    
+      < Navbar />
+
        {children}
     
 </AuthProvider>

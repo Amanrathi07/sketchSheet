@@ -1,15 +1,17 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { useRouter } from "next/navigation";
+import {  useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
+import axiosInstance from "@/lib/axiosInstance";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const {user} = useAuth()
-  return (
+ 
+   return (
     <nav className="w-full bg-gray-900 text-white border-b border-gray-700 shadow-lg shadow-gray-800/40">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         
@@ -24,7 +26,7 @@ sketchSheet
         </h1>
 
         {/* Desktop Buttons */}
-        {user ? user.name : <div className="hidden md:flex items-center gap-4">
+        {user ? <LogoutButton/> : <div className="hidden md:flex items-center gap-4">
           <button
             onClick={() => router.push("/auth/signin")}
             className="
@@ -114,4 +116,25 @@ sketchSheet
       )}
     </nav>
   );
+}
+
+function LogoutButton(){
+  return(
+    <button
+            onClick={() => {document.cookie =`jwt=`}}
+            className="
+              px-6 py-2 
+              text-gray-900 
+              font-bold 
+              bg-red-400 
+              rounded-lg 
+              shadow-lg 
+              hover:scale-90
+              transition-all duration-200
+              transform hover:scale-[1.03]
+            "
+          >
+            logout
+          </button>
+  )
 }

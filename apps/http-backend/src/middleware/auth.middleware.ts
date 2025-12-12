@@ -22,7 +22,6 @@ export async function cookiesCheck(req:Request,res:Response,next:NextFunction){
     }
     //@ts-ignore
     req.user = decodeId
-
     next()
     } catch (error) {
         console.log("error in cookiesCheck function ",error);

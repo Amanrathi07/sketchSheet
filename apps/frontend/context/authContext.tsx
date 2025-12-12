@@ -1,14 +1,32 @@
 // context/authContext.js
-"use client"
-import React, { createContext, useState, useContext, ContextType } from 'react';
+"use client";
+import axiosInstance from "@/lib/axiosInstance";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+} from "react";
 
 const AuthContext = createContext({
   user: null,
-  setUser: () => {}
+  setUser: () => {},
 });
 
-export const AuthProvider = ({ children }:{ children: React.ReactNode }) => {
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState(null);
+  useEffect(() => {
+  async function checkUser() {
+    const dbresponce = await axiosInstance.get("/auth/checkAuth");
+    if(dbresponce.data){
+      console.log(dbresponce.data)
+      setUser(dbresponce.data)
+    }
+  }
+
+  checkUser(); 
+}, []);
+
 
   return (
     //@ts-ignore
