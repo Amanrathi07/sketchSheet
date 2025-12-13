@@ -116,7 +116,7 @@ export class Game {
     this.canvas.addEventListener("mousedown", (e) => {
       this.clicked = true;
       this.startX = e.clientX;
-      this.startY = e.clientY - 73;
+      this.startY = e.clientY ;
 
       if (this.selectedTool === "pencil") {
         this.pencilPoints = [{ x: this.startX, y: this.startY }];
@@ -127,7 +127,7 @@ export class Game {
       if (!this.clicked) return;
 
       const x = e.clientX;
-      const y = e.clientY - 73;
+      const y = e.clientY ;
 
       if (this.selectedTool === "Rectangle") {
         this.clearCanvas();
@@ -193,7 +193,7 @@ export class Game {
           startx: this.startX,
           starty: this.startY,
           endx: e.clientX,
-          endy: e.clientY - 73,
+          endy: e.clientY ,
         };
       }
 
