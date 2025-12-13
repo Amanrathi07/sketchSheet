@@ -96,6 +96,10 @@ export class Game {
         this.ctx.moveTo(fig.startx, fig.starty);
         this.ctx.lineTo(fig.endx, fig.endy);
         this.ctx.stroke();
+      }else if(fig.type==="circle"){
+        this.ctx.beginPath()
+          this.ctx.arc(fig.startx, fig.starty, fig.radius, 0, fig.endAngle);
+          this.ctx.stroke();
       }
     });
   }
@@ -128,6 +132,15 @@ export class Game {
           endx: e.clientX,
           endy: e.clientY,
         };
+      }else if (this.selectedTool === "circle"){
+        this.newShape = {
+          type: "circle",
+          startx: this.startX,
+          starty: this.startY,
+          radius: Math.abs(width),
+          startAngle: e.clientY,
+          endAngle:Math.abs(2 * Math.PI)
+        };
       }
       
       this.socket.send(
@@ -152,6 +165,14 @@ export class Game {
           this.ctx.beginPath();
           this.ctx.moveTo(this.startX, this.startY);
           this.ctx.lineTo(e.clientX, e.clientY);
+          this.ctx.stroke();
+        }else if(this.selectedTool==="circle"){
+          const width = e.clientX - this.startX;
+          const height = e.clientY - this.startY;
+
+          this.clearCanvas()
+          this.ctx.beginPath();
+          this.ctx.arc(this.startX, this.startY, Math.abs(width), 0, Math.abs(2 * Math.PI));
           this.ctx.stroke();
         }
       }
