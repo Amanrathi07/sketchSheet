@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       const dbresponce = await axiosInstance.get("/auth/checkAuth");
     if(dbresponce.data){
-      console.log(dbresponce.data)
       setUser(dbresponce.data)
     }
     } catch (error) {

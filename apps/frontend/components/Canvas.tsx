@@ -9,7 +9,7 @@ interface props{
   socket:WebSocket 
 }
 
-export type tool = "circle"|"Rectangle"|"Pencil"|"line"|"";
+export type tool = "circle"|"Rectangle"|"pencil"|"line"|"";
 
 function Canvas({roomId,socket}:props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
