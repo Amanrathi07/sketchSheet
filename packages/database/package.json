@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "scripts": {
+    "prisma:generate":"bun prisma generate",
+    "prisma:migrate":"bun prisma migrate dev"
+  },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "dotenv": "^17.2.3",
