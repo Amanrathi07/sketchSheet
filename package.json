@@ -6,9 +6,7 @@
     "dev:http": "cd apps/http-backend && bun run dev",
     "dev:ws": "cd apps/ws-backend && bun run dev",
     "dev:next": "cd apps/frontend && bun run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "prisma":"cd packages/database && bun prisma migrate deploy "
   },
   "devDependencies": {
     "prettier": "^3.6.2",
