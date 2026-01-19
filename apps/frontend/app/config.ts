@@ -1,4 +1,4 @@
 
-export const  WS_URL = "ws://localhost:8080"
+export const  WS_URL = "ws://ws:8080"
 
-export const HTTPS_URL = "http://localhost:3000/v1"
+export const HTTPS_URL = "http://http:3000/v1"
