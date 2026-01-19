@@ -3,9 +3,8 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev:http": "cd apps/http-backend && bun run dev",
-    "dev:ws": "cd apps/ws-backend && bun run dev",
-    "dev:next": "cd apps/frontend && bun run dev",
+    "start":"bun run prisma && bun run dev",
+    "dev":"turbo dev",
     "prisma":"cd packages/database && bun prisma migrate deploy "
   },
   "devDependencies": {
