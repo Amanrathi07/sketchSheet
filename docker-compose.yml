@@ -13,7 +13,7 @@ services:
       timeout: 5s
       retries: 5
 
-  http:
+  http-backend:
     build:
       context: .
       dockerfile: ./Docker/Dockerfile.https
@@ -50,4 +50,4 @@ services:
     ports:
       - "3001:3001"
     depends_on:
-      - http
+      - http-backend
