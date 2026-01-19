@@ -1,0 +1,43 @@
+services:
+  pg:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+    ports:
+      - "5432:5432"
+
+  http:
+    build:
+      context: .
+      dockerfile: ./Docker/Dockerfile.https
+    environment:
+      - DATABASE_URL=postgresql://postgres:mysecretpassword@pg:5432/postgres
+      - SECRET=mySecret
+    ports:
+      - "3000:3000"
+    depends_on:
+      - pg
+
+  ws:
+    build:
+      context: .
+      dockerfile: ./Docker/Dockerfile.ws
+    environment:
+      - DATABASE_URL=postgresql://postgres:mysecretpassword@pg:5432/postgres
+      - SECRET=mySecret
+    ports:
+      - "8080:8080"
+    depends_on:
+      - pg
+
+  frontend:
+    build: 
+      context: .
+      dockerfile: ./Docker/Dockerfile.frontend
+    environment:
+      - DATABASE_URL=postgresql://postgres:mysecretpassword@pg:5432/postgres
+      - SECRET=mySecret  
+    ports:
+      - "3001:3001"
+    depends_on:
+      - http    

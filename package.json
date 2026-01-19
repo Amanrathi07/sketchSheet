@@ -3,9 +3,9 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "start":"bun run prisma && bun run dev",
-    "dev":"turbo dev",
-    "prisma":"cd packages/database && bun prisma migrate deploy "
+    "start": "bun run prisma && bun run dev",
+    "dev": "turbo dev",
+    "prisma": "cd packages/database && bun prisma migrate deploy "
   },
   "devDependencies": {
     "prettier": "^3.6.2",
@@ -19,5 +19,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "docker-compose": "^1.3.0"
+  }
 }
